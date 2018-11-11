@@ -11,7 +11,6 @@ public class Main {
         Vector3D vectorA = new Vector3D(5, 6, 3);
         Vector3D vectorB = new Vector3D(9, 5, 0);
 
-        Network network = new Network();
         Phone phoneOne = new Phone(380961111111L);
         Phone phoneTwo = new Phone(380962222222L);
         Phone phoneThr = new Phone(380963333333L);

@@ -22,13 +22,18 @@ public class Phone {
         Network.phonesRegistration(phoneNumber);
     }
 
+    public void ring(long phoneNumber) {
+        System.out.println("Incoming call!!! Subscriber is: +" + this.phoneNumber);
+    }
+
     public void call(long phoneNumber) {
         if (!(Network.isPhoneNumberRegistered(this.getPhoneNumber()))) {
             System.out.println("This phone number is not registered yet, pleas register first!");
             return;
         }
         if (Network.isPhoneNumberRegistered(phoneNumber)) {
-            System.out.println("Call to +" + phoneNumber + " is successful!");
+            //System.out.println("Call to +" + phoneNumber + " is successful!");
+            ring(phoneNumber);
         } else {
             System.out.println("Phone number +" + phoneNumber + " is not registered yet. Call is unsuccessful. Please, try again later!");
         }

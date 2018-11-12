@@ -1,17 +1,19 @@
 package JavaOOP.Lesson2HomeWork;
 
-public class Triangle extends Shape {
+public class Quadrangle extends Shape {
     private Point pointA = new Point();
     private Point pointB = new Point();
     private Point pointC = new Point();
+    private Point pointD = new Point();
 
-    public Triangle(Point pointA, Point pointB, Point pointC) {
+    public Quadrangle(Point pointA, Point pointB, Point pointC, Point pointD) {
         this.pointA = pointA;
         this.pointB = pointB;
         this.pointC = pointC;
+        this.pointD = pointD;
     }
 
-    public Triangle() {
+    public Quadrangle() {
     }
 
     public Point getPointA() {
@@ -38,27 +40,37 @@ public class Triangle extends Shape {
         this.pointC = pointC;
     }
 
+    public Point getPointD() {
+        return pointD;
+    }
+
+    public void setPointD(Point pointD) {
+        this.pointD = pointD;
+    }
+
     private double getLength(Point pointA, Point pointB) {
         return Math.sqrt(Math.pow(pointB.getX() - pointA.getX(), 2) + Math.pow(pointB.getY() - pointA.getY(), 2));
     }
 
     @Override
     public double getArea() {
-        double p = getPerimeter() / 2;
-        return Math.sqrt(p * (p - getLength(pointA, pointB)) * (p - getLength(pointB, pointC)) * (p - getLength(pointC, pointA)));
+        Triangle triangleABC = new Triangle(getPointA(), getPointB(), getPointC());
+        Triangle triangleACD = new Triangle(getPointA(), getPointC(), getPointD());
+        return triangleABC.getArea() + triangleACD.getArea();
     }
 
     @Override
     public double getPerimeter() {
-        return this.getLength(pointA, pointB) + this.getLength(pointB, pointC) + this.getLength(pointC, pointA);
+        return getLength(pointA, pointB) + getLength(pointB, pointC) + getLength(pointC, pointD) + getLength(pointD, pointA);
     }
 
     @Override
     public String toString() {
-        return  "Triangle with points: " +
+        return "Quadrangle with points: " +
                 "{A: " + pointA +
                 ", B: " + pointB +
-                ", C: " + pointC + '}' +
+                ", C: " + pointC +
+                ", D: " + pointD + '}' +
                 " and Area:" + this.getArea();
     }
 }

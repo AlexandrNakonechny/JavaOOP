@@ -1,61 +1,41 @@
-package JavaOOP.Lesson1HomeWork;
+package JavaOOP.Lesson2HomeWork;
 
 public class Main {
     public static void main(String[] args) {
-        Cat catOne = new Cat("Matroskin", "Dvorovyi", "Green");
-        Cat catTwo = new Cat("Barsik", "Pers", "Brown");
-        Cat catThree = new Cat("Vaska", "Siam", "Blue");
+        Point centerCircle = new Point(3, 2);
+        Point pointCircle = new Point(8,11);
 
-        Triangle triangle = new Triangle(10, 5, 6);
+        Point pointTriA = new Point(0, 0);
+        Point pointTriB = new Point(0, 4);
+        Point pointTriC = new Point(3,0);
 
-        Vector3D vectorA = new Vector3D(5, 6, 3);
-        Vector3D vectorB = new Vector3D(9, 5, 0);
+        Point pointQuaA = new Point(0, 0);
+        Point pointQuaB = new Point(0, 5);
+        Point pointQuaC = new Point(6, 5);
+        Point pointQuaD = new Point(6, 0);
 
-        Phone phoneOne = new Phone(380961111111L);
-        Phone phoneTwo = new Phone(380962222222L);
-        Phone phoneThr = new Phone(380963333333L);
-
-        System.out.println("_________________________________________________________________________________________");
-        System.out.println("Try to check correct work of class Cat");
-        System.out.println("_________________________________________________________________________________________");
-        catOne.meow();
-        catOne.feed();
-        System.out.println(catOne);
+        Circle circle = new Circle(centerCircle, pointCircle);
+        System.out.println(circle.getArea());
+        System.out.println(circle.getPerimeter());
         System.out.println();
 
-        catTwo.meow();
-        catTwo.playWithBall();
-        System.out.println(catTwo);
+        Triangle triangle = new Triangle(pointTriA, pointTriB, pointTriC);
+        System.out.println(triangle.getArea());
+        System.out.println(triangle.getPerimeter());
         System.out.println();
 
-        catThree.meow();
-        catThree.feed();
-        catThree.playWithBall();
-        System.out.println(catThree);
+        Quadrangle quadrangle = new Quadrangle(pointQuaA, pointQuaB, pointQuaC, pointQuaD);
+        System.out.println(quadrangle.getPerimeter());
+        System.out.println(quadrangle.getArea());
+        System.out.println();
 
-        System.out.println("_________________________________________________________________________________________");
-        System.out.println("Try to check correct work of class Triangle");
-        System.out.println("_________________________________________________________________________________________");
-        System.out.println(triangle);
-        System.out.println("Square of triangle is: " + triangle.getArea());
-        triangle.setSideA(5);
-        System.out.println("Square of triangle now is: " + triangle.getArea());
+        Table table = new Table();
+        table.addShape(0, circle);
+        table.addShape(2, triangle);
+        table.addShape(3, quadrangle);
+        System.out.println(table.showAllShapes());
 
-        System.out.println("_________________________________________________________________________________________");
-        System.out.println("Try to check correct work of class Vector3D");
-        System.out.println("_________________________________________________________________________________________");
-        System.out.println(vectorA);
-        System.out.println(vectorB);
-        System.out.println("Its vector sum: " + vectorA.getVectorSumOfVectors(vectorB));
-        System.out.println("Its scalar sum of vectors: " + vectorA.getScalarSumOfVectors(vectorB));
-
-        System.out.println("_________________________________________________________________________________________");
-        System.out.println("Try to check correct work of class Phone and Network");
-        System.out.println("_________________________________________________________________________________________");
-        phoneOne.registration();
-        phoneThr.registration();
-        phoneOne.call(phoneThr.getPhoneNumber());
-        phoneThr.call(phoneTwo.getPhoneNumber());
-        phoneTwo.call(phoneThr.getPhoneNumber());
+        table.deleteShape(2);
+        System.out.println(table.showAllShapes());
     }
 }

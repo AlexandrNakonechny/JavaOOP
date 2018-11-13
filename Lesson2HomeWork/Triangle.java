@@ -1,64 +1,54 @@
 package JavaOOP.Lesson2HomeWork;
 
-public class Triangle extends Shape {
-    private Point pointA = new Point();
-    private Point pointB = new Point();
-    private Point pointC = new Point();
+public class Table {
+    private Shape table [] = new Shape[4];
 
-    public Triangle(Point pointA, Point pointB, Point pointC) {
-        this.pointA = pointA;
-        this.pointB = pointB;
-        this.pointC = pointC;
+    public Shape[] getTable() {
+        return table;
     }
 
-    public Triangle() {
+    public void addShape(int number, Shape shape) {
+        if (number >= 0 && number < this.table.length) {
+            this.table[number] = shape;
+        } else {
+            throw new IllegalArgumentException("Number must be between 0 and 3, but actually is: " + number);
+        }
     }
 
-    public Point getPointA() {
-        return pointA;
+    public void deleteShape(int number) {
+        if (number >= 0 && number < this.table.length) {
+            this.table[number] = null;
+        } else {
+            throw new IllegalArgumentException("Number must be between 0 and 3, but actually is: " + number);
+        }
     }
 
-    public void setPointA(Point pointA) {
-        this.pointA = pointA;
+    public String showAllShapes() {
+        return toString();
     }
 
-    public Point getPointB() {
-        return pointB;
-    }
-
-    public void setPointB(Point pointB) {
-        this.pointB = pointB;
-    }
-
-    public Point getPointC() {
-        return pointC;
-    }
-
-    public void setPointC(Point pointC) {
-        this.pointC = pointC;
-    }
-
-    private double getLength(Point pointA, Point pointB) {
-        return Math.sqrt(Math.pow(pointB.getX() - pointA.getX(), 2) + Math.pow(pointB.getY() - pointA.getY(), 2));
-    }
-
-    @Override
-    public double getArea() {
-        double p = getPerimeter() / 2;
-        return Math.sqrt(p * (p - getLength(pointA, pointB)) * (p - getLength(pointB, pointC)) * (p - getLength(pointC, pointA)));
-    }
-
-    @Override
-    public double getPerimeter() {
-        return this.getLength(pointA, pointB) + this.getLength(pointB, pointC) + this.getLength(pointC, pointA);
+    public double getSumAreasOfAllShapes() {
+        double ret = 0;
+        for (int i = 0; i < this.table.length; i++) {
+            if (this.table[i] != null) {
+                ret = ret + this.table[i].getArea();
+            }
+        }
+        return ret;
     }
 
     @Override
     public String toString() {
-        return  "Triangle with points: " +
-                "{A: " + pointA +
-                ", B: " + pointB +
-                ", C: " + pointC + '}' +
-                " and Area:" + this.getArea();
+        String ret = "Table contains:\n";
+        String temp;
+        for (int i = 0; i < this.table.length; i++) {
+            if (table[i] != null) {
+                temp = this.table[i].toString();
+                ret = ret + (i + 1) + ". " + temp + "\n";
+            } else {
+                ret = ret + (i + 1) + ". Empty here! \n";
+            }
+        }
+        return ret;
     }
 }
